@@ -18,5 +18,29 @@ bmiTell' weight height
         fat = 30.0
 
 --- where scope
+-- greet :: String -> String
+-- greet "Juan" = niceGreeting ++ " Juan!"
+-- greet "Fernando" = niceGreeting ++ " Fernando!"
+-- greet name = badGreeting ++ " " ++ name
+--       where niceGreeting = "Hello! So very nice to see you,"
+--             badGreeting = "Oh! Pfft. It's you."
 
--- to be continued
+badGreeting :: String
+badGreeting = "Oh! Pfft. It's you."
+niceGreeting :: String
+niceGreeting = "Hello! So very nice to see you,"
+greet :: String -> String
+greet "Juan" = niceGreeting ++ " Juan!"
+greet "Fernando" = niceGreeting ++ " Fernando!"
+greet name = badGreeting ++ " " ++ name
+
+--- Pattern Matching with where
+initials :: String -> String -> String
+initials firstname lastname = [f] ++ ". " ++ [l] ++ "."
+         where (f:_) = firstname
+               (l:_) = lastname
+
+--- Functions in where Blocks
+calcBmis :: [(Double, Double)] -> [Double]
+calcBmis xs = [bmi w h | (w, h) <- xs]
+         where bmi weight height = weight / height ^ 2
