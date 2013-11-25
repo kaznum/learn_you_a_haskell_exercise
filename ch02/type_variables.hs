@@ -1,0 +1,2 @@
+:t head
+:t fst
