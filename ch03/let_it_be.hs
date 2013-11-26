@@ -9,5 +9,14 @@ cylinder r h =
 -- (let (a, b, c) = (1, 2, 3) in a+b+c) * 100
 
 --- let in List Comprehensions
+calcBmis :: [(Double, Double)] -> [Double]
+calcBmis xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2]
 
--- to be continued
+calcBmis' :: [(Double, Double)] -> [Double]
+calcBmis' xs = [bmi | (w, h) <- xs, let bmi = w / h ^ 2, bmi > 25.0]
+
+-- let zoot x y z = x * y + z
+-- zoot 3 9 2
+
+-- let boot x y z = x * y + z in boot 3 4 2
+-- boot
