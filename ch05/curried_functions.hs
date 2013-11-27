@@ -20,4 +20,14 @@ compareWithHundred' = compare 100
 
 --- Sections
 
--- to be continued
+divideByTen :: (Floating a) => a -> a
+divideByTen = (/10)
+-- divideByTen 200
+-- 200 / 10
+-- (/10) 200
+
+isUpperAlphanum :: Char -> Bool
+isUpperAlphanum = (`elem` ['A'..'Z'])
+
+--- Printing Functions
+
