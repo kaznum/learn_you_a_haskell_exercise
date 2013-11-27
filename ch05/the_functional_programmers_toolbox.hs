@@ -39,4 +39,19 @@ largestDivisible = head (filter p [100000,99999..])
 -- sum (takeWhile(<10000) (filter odd (map (^2) [1..])))
 -- sum (takeWhile (<10000) [m |m <- [n^2 | n <- [1..]], odd m])
 
--- to be continued
+chain :: Integer -> [Integer]
+chain 1 = [1]
+chain n
+      | even n = n : chain (n `div` 2)
+      | odd n = n : chain (n*3 + 1)
+
+-- chain 10
+
+numLongChains :: Int
+numLongChains = length (filter isLong (map chain [1..100]))
+              where isLong xs = length xs > 15
+
+--- Mapping Functions with Multiple Parameters
+
+-- let listOfFuns = map (*) [0..]
+-- (listOfFuns !! 4) 5
