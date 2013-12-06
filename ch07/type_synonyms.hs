@@ -1,3 +1,4 @@
+import Data.Map
 --- Making Our Phonebook Prettier
 
 phoneBook :: [(String, String)]
@@ -17,5 +18,13 @@ inPhoneBook :: Name -> PhoneNumber -> PhoneBook -> Bool
 inPhoneBook name pnumber pbook = (name, pnumber) `elem` pbook
 
 --- Parameterizing Type Synonyms
+type AssocList k v = [(k, v)]
+
+type IntMap v = Map Int v
+type IntMap' = Map Int
+
+-- [(1,2), (3,5),(8,9)] :: AssocList Int Int
+
+--- Go Left, Then Right
 
 -- to be continued
