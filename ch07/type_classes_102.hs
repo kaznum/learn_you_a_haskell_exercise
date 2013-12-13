@@ -25,6 +25,26 @@ instance Show TrafficLight where
 --- Subclassing
 
 --- Parameterized Types As Instances of Type Classes
+-- *Main> :info Num
+-- class Num a where
+--   (+) :: a -> a -> a
+--   (*) :: a -> a -> a
+--   (-) :: a -> a -> a
+--   negate :: a -> a
+--   abs :: a -> a
+--   signum :: a -> a
+--   fromInteger :: Integer -> a
+--   	-- Defined in `GHC.Num'
+-- instance Num Integer -- Defined in `GHC.Num'
+-- instance Num Int -- Defined in `GHC.Num'
+-- instance Num Float -- Defined in `GHC.Float'
+-- instance Num Double -- Defined in `GHC.Float'
+-- *Main> :info Maybe
+-- data Maybe a = Nothing | Just a 	-- Defined in `Data.Maybe'
+-- instance Eq a => Eq (Maybe a) -- Defined in `Data.Maybe'
+-- instance Monad Maybe -- Defined in `Data.Maybe'
+-- instance Functor Maybe -- Defined in `Data.Maybe'
+-- instance Ord a => Ord (Maybe a) -- Defined in `Data.Maybe'
+-- instance Read a => Read (Maybe a) -- Defined in `GHC.Read'
+-- instance Show a => Show (Maybe a) -- Defined in `GHC.Show'
 
-
--- to be continued
