@@ -1,1 +1,12 @@
--- to be continued
+-- *Main> :k Int
+-- Int :: *
+-- *Main> :k Maybe
+-- Maybe :: * -> *
+-- *Main> :k Maybe Int
+-- Maybe Int :: *
+-- *Main> :k Either
+-- Either :: * -> * -> *
+-- *Main> :k Either String
+-- Either String :: * -> *
+-- *Main> :k Either String Int
+-- Either String Int :: *
