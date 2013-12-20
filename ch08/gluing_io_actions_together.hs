@@ -9,4 +9,9 @@
 -- HEEY
 
 --- Using let Inside I/O Actions
+
+-- see hey_how_are_you.hs
+
+--- Putting It in Reverse
+
 -- to be continued
