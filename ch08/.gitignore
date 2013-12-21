@@ -10,4 +10,5 @@ putstr
 print
 when
 sequence
+forever
 

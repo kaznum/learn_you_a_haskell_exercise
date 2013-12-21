@@ -37,6 +37,19 @@ putStr' (x:xs) = do
 -- [(),(),(),(),()]
 
 --- mapM
+-- *Main> mapM print [1,2,3]
+-- 1
+-- 2
+-- 3
+-- [(),(),()]
+-- *Main> mapM_ print [1,2,3]
+-- 1
+-- 2
+-- 3
 
+--- forever
+-- see forever.hs
+
+--- forM
 
 -- to be continued
