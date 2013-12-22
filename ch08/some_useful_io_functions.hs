@@ -51,5 +51,6 @@ putStr' (x:xs) = do
 -- see forever.hs
 
 --- forM
+-- see for_m.hs
 
 -- to be continued
