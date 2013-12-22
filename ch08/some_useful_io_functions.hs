@@ -52,5 +52,3 @@ putStr' (x:xs) = do
 
 --- forM
 -- see for_m.hs
-
--- to be continued
