@@ -13,5 +13,7 @@
 -- see shortlinesonly.hs and shortlines.txt
 
 --- Transforming Input
+-- see shortlinesonly2.hs
 
--- to be continued
+-- see respondpalindromes.hs and words.txt
+
