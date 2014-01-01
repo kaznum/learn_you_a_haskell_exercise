@@ -7,5 +7,5 @@
 -- see with_file.hs
 
 --- Grab the Handlers!
-
--- to be contiued
+-- see read_girlfriend.hs
+-- see caps_girlfriend.hs
