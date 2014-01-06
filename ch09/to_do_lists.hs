@@ -3,4 +3,6 @@
 --- Deleting Items
 -- see deletetodo.hs
 
--- to be continued
+-- Cleaning Up
+-- see deletetodo2.hs
+
