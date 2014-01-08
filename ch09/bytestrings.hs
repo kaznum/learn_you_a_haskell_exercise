@@ -33,4 +33,5 @@ import qualified Data.ByteString as S
 
 --- Copying Files with Bytestrings
 
--- to be continued
+-- see bytestringcopy.hs
+
