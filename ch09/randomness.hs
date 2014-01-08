@@ -75,5 +75,8 @@ finiteRandoms n gen =
 -- "ndkxbvmomg"
 
 --- Randomness and I/O
+-- see random_string.hs
+-- see random_string2.hs
+-- see random_string3.hs
 
 -- to be continued
