@@ -2,5 +2,5 @@
 -- see todo.hs
 
 --- Dealing with Bad Input
+-- see todo2.hs
 
--- to be continued
