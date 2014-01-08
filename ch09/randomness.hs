@@ -47,4 +47,33 @@ threeCoins gen =
 
 --- More Random Functions
 
+-- *Main System.Random> take 5 $ randoms (mkStdGen 11) :: [Int]
+-- [5258698905265467991,-1046130112415077602,3603401487739301952,-595625523242114439,-242088768969841391]
+-- *Main System.Random> take 5 $ randoms (mkStdGen 11) :: [Bool]
+-- [True,True,True,True,False]
+-- *Main System.Random> take 5 $ randoms (mkStdGen 11) :: [Float]
+-- [0.23626214,0.48899883,0.4896804,0.29281616,2.5201797e-2]
+
+randoms' :: (RandomGen g, Random a) => g -> [a]
+randoms' gen = let (value, newGen) = random gen in value:randoms' newGen
+
+finiteRandoms :: (RandomGen g, Random a, Num n, Eq n) => n -> g -> ([a], g)
+finiteRandoms 0 gen = ([], gen)
+finiteRandoms n gen =
+  let (value, newGen) = random gen
+      (restOfList, finalGen) = finiteRandoms (n-1) newGen
+  in (value:restOfList, finalGen)
+
+-- *Main System.Random> finiteRandoms 5 (mkStdGen 100) :: ([Int], StdGen)
+-- ([-3650871090684229393,-9143854998136150815,3895500410229592485,-123024474634060453,-2376195156280095240],1772499918 2118231989)
+
+-- *Main System.Random> randomR (1,6) (mkStdGen 359353)
+-- (6,1494289578 40692)
+-- *Main System.Random> randomR (1,6) (mkStdGen 35935335)
+-- (3,1250031057 40692)
+-- *Main System.Random> take 10 $ randomRs ('a','z') (mkStdGen 3) :: [Char]
+-- "ndkxbvmomg"
+
+--- Randomness and I/O
+
 -- to be continued
