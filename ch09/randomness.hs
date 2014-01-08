@@ -78,5 +78,5 @@ finiteRandoms n gen =
 -- see random_string.hs
 -- see random_string2.hs
 -- see random_string3.hs
-
+-- see guess_the_number.hs
 -- to be continued
