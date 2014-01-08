@@ -27,4 +27,24 @@
 -- (2779100082051559757,587416689 2103410263)
 
 --- Tossing a Coin
+
+import System.Random
+threeCoins :: StdGen -> (Bool, Bool, Bool)
+threeCoins gen =
+  let (firstCoin, newGen) = random gen
+      (secondCoin, newGen') = random newGen
+      (thirdCoin, newGen'') = random newGen'
+  in (firstCoin, secondCoin, thirdCoin)
+
+-- *Main System.Random> threeCoins (mkStdGen 21)
+-- (True,True,True)
+-- *Main System.Random> threeCoins (mkStdGen 22)
+-- (True,False,True)
+-- *Main System.Random> threeCoins (mkStdGen 943)
+-- (True,False,True)
+-- *Main System.Random> threeCoins (mkStdGen 944)
+-- (True,True,True)
+
+--- More Random Functions
+
 -- to be continued
