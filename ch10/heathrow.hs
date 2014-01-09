@@ -1,6 +1,10 @@
---- Calculating the Quickest Path
+import Data.List
 
---- Representing the Road System in Haskell
+groupsOf :: Int -> [a] -> [[a]]
+groupsOf 0 _ = undefined
+groupsOf _ [] = []
+groupsOf n xs = take n xs : groupsOf n (drop n xs)
+
 
 data Section = Section { getA :: Int, getB :: Int, getC :: Int }
 type RoadSystem = [Section]
@@ -12,7 +16,6 @@ heathrowToLondon = [ Section 50 10 30
                    , Section 10 8 0
                    ]
 
---- Writing the Optimal Path Function
 data Label = A | B | C deriving (Show)
 type Path = [(Label, Int)]
 
@@ -32,9 +35,6 @@ roadStep (pathA, pathB) (Section a b c) =
                    else (C, c):(A, a):pathA
   in (newPathToA, newPathToB)
 
--- *Main> roadStep ([],[]) (head heathrowToLondon)
--- ([(C,30),(B,10)],[(B,10)])
-
 optimalPath :: RoadSystem -> Path
 optimalPath roadSystem =
   let (bestAPath, bestBPath) = foldl roadStep ([], []) roadSystem
@@ -42,8 +42,13 @@ optimalPath roadSystem =
      then reverse bestAPath
      else reverse bestBPath
 
--- *Main> optimalPath heathrowToLondon
--- [(B,10),(C,30),(A,5),(C,20),(B,2),(B,8),(C,0)]
 
---- Getting a Road System from the Input
--- see heathrow.hs
+main = do
+  contents <- getContents
+  let threes = groupsOf 3 (map read $ lines contents)
+      roadSystem = map (\[a,b,c] -> Section a b c) threes
+      path = optimalPath roadSystem
+      pathString = concat $ map (show . fst) path
+      pathTime = sum $ map snd path
+  putStrLn $ "The best path to take is: " ++ pathString
+  putStrLn $ "Time taken: " ++ show pathTime
