@@ -16,4 +16,21 @@
 
 --- Say Hello to Applicative
 
+--- Maybe the Applicative Functor
+
+-- *Main> import Control.Applicative
+-- *Main Control.Applicative> Just (+3) <*> Just 9
+-- Just 12
+-- *Main Control.Applicative> pure (+3) <*> Just 10
+-- Just 13
+-- *Main Control.Applicative> pure (+3) <*> Just 9
+-- Just 12
+-- *Main Control.Applicative> Just (++"hahah") <*> Nothing
+-- Nothing
+-- *Main Control.Applicative> Nothing <*> Just "woot"
+-- Nothing
+
+--- Applicative Style
+
+
 -- to be continued
