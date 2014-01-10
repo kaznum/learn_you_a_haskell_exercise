@@ -1,3 +1,5 @@
+import Control.Applicative
+
 -- *Main> :t fmap (++) (Just "hey")
 -- fmap (++) (Just "hey") :: Maybe ([Char] -> [Char])
 -- *Main> :t fmap compare (Just 'a')
@@ -45,4 +47,37 @@
 
 --- Lists
 
+-- *Main Control.Applicative> pure "Hey" :: [String]
+-- ["Hey"]
+-- *Main Control.Applicative> pure "Hey" :: Maybe String
+-- Just "Hey"
+
+-- *Main Control.Applicative> [(*0),(+100),(^2)] <*> [1,2,3]
+-- [0,0,0,101,102,103,1,4,9]
+-- *Main Control.Applicative> [(+),(*)] <*> [1,2] <*> [3,4]
+-- [4,5,5,6,3,4,6,8]
+-- *Main Control.Applicative> (++) <$> ["ha", "heh","hmm"] <*> ["?", "!", "."]
+-- ["ha?","ha!","ha.","heh?","heh!","heh.","hmm?","hmm!","hmm."]
+-- *Main Control.Applicative> (+) <$> [1,2,3] <*> [4,5,6]
+-- [5,6,7,6,7,8,7,8,9]
+-- *Main Control.Applicative> [x*y | x <- [2,5,10], y <- [8,10,11]]
+-- [16,20,22,40,50,55,80,100,110]
+-- *Main Control.Applicative> (*) <$> [2,5,10] <*> [8,10,11]
+-- [16,20,22,40,50,55,80,100,110]
+-- *Main Control.Applicative> filter (>50) $ (*) <$> [2,5,10] <*> [8,10,11]
+-- [55,80,100,110]
+
+--- IO Is An Applicative Functor, Too
+myAction :: IO String
+myAction = do
+  a <- getLine
+  b <- getLine
+  return $ a ++ b
+
+myAction' :: IO String
+myAction' = (++) <$> getLine <*> getLine
+
+--- Functions As Applicatives
+
 -- to be continued
+
