@@ -31,6 +31,18 @@
 -- Nothing
 
 --- Applicative Style
+-- *Main Control.Applicative> pure (+) <*> Just 3 <*> Just 5
+-- Just 8
+-- *Main Control.Applicative> pure (+) <*> Just 3 <*> Nothing
+-- Nothing
+-- *Main Control.Applicative> pure (+) <*> Nothing <*> Just 5
+-- Nothing
 
+-- *Main Control.Applicative> (++) <$> Just "johntra" <*> Just "volta"
+-- Just "johntravolta"
+-- *Main Control.Applicative> (++) "johntra" "volta"
+-- "johntravolta"
+
+--- Lists
 
 -- to be continued
