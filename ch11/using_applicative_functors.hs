@@ -92,5 +92,15 @@ myAction' = (++) <$> getLine <*> getLine
 
 --- Zip Lists
 
--- to be continued
+-- *Main Control.Applicative> getZipList $ (+) <$> ZipList [1,2,3] <*> ZipList [100,100,100]
+-- [101,102,103]
+-- *Main Control.Applicative> getZipList $ (+) <$> ZipList [1,2,3] <*> ZipList [100,100..]
+-- [101,102,103]
+-- *Main Control.Applicative> getZipList $ max <$> ZipList [1,2,3,4,5,3] <*> ZipList [5,3,1,2]
+-- [5,3,3,4]
+-- *Main Control.Applicative> getZipList $ (,,) <$> ZipList "dog" <*> ZipList "cat" <*> ZipList "rat"
+-- [('d','c','r'),('o','a','a'),('g','t','t')]
+
+--- Applicative Laws
+
 
