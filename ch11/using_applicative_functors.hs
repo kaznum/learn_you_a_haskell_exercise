@@ -78,6 +78,19 @@ myAction' :: IO String
 myAction' = (++) <$> getLine <*> getLine
 
 --- Functions As Applicatives
+-- *Main Control.Applicative> (pure 3) "blah"
+-- 3
+-- *Main Control.Applicative> pure 3 "blah"
+-- 3
+-- *Main Control.Applicative> :t (+) <$> (+3) <*> (*100)
+-- (+) <$> (+3) <*> (*100) :: Num a => a -> a
+-- *Main Control.Applicative> (+) <$> (+3) <*> (*100) $ 5
+-- 508
+
+-- *Main Control.Applicative> (\x y z -> [x, y, z]) <$> (+3) <*> (*2) <*> (/2) $ 5
+-- [8.0,10.0,2.5]
+
+--- Zip Lists
 
 -- to be continued
 
