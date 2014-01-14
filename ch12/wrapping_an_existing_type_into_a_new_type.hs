@@ -25,4 +25,16 @@
 
 --- Using newtype to Make Type Class Instances
 
+-- newtype Pair b a = Pair { getPair :: (a, b) }
+
+-- instance Functor (Pair c) where
+--   fmap f (Pair (x, y)) = Pair (f x, y)
+
+-- *Main Control.Applicative> getPair $ fmap (*100) (Pair (2,3))
+-- (200,3)
+-- *Main Control.Applicative> getPair $ fmap reverse (Pair ("london calling",3))
+-- ("gnillac nodnol",3)
+
+--- On newtype Laziness
+
 -- to be continued
