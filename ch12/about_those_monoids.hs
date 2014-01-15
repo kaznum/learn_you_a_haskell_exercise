@@ -25,4 +25,4 @@
 
 --- The Monoid Type Class
 
--- to be continued
+--- The Monoid Laws
