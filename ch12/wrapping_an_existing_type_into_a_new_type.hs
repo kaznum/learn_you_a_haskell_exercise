@@ -58,5 +58,27 @@ helloMe' (CoolBool' _) = "hello"
 -- "hello"
 
 --- type vs. newtype vs. data
+type IntList = [Int]
+-- *Main Control.Applicative> ([1,2,3] :: IntList) ++ ([1,2,3] :: [Int])
+-- [1,2,3,1,2,3]
 
--- to be continued
+newtype CharList = CharList { getCharList :: [Char] } deriving (Show)
+
+*Main Control.Applicative> (CharList "aaa") ++ (CharList "aaa")
+
+-- <interactive>:95:2:
+--     Couldn't match expected type `[a0]' with actual type `CharList'
+--     In the return type of a call of `CharList'
+--     In the first argument of `(++)', namely `(CharList "aaa")'
+--     In the expression: (CharList "aaa") ++ (CharList "aaa")
+
+-- <interactive>:95:22:
+--     Couldn't match expected type `[a0]' with actual type `CharList'
+--     In the return type of a call of `CharList'
+--     In the second argument of `(++)', namely `(CharList "aaa")'
+--     In the expression: (CharList "aaa") ++ (CharList "aaa")
+
+-- *Main Control.Applicative> getCharList (CharList "aaa") ++ getCharList (CharList "aaa")
+-- "aaaaaa"
+
+
