@@ -36,5 +36,27 @@
 -- ("gnillac nodnol",3)
 
 --- On newtype Laziness
+-- *Main Control.Applicative> undefined
+-- *** Exception: Prelude.undefined
+-- *Main Control.Applicative> head [3,4,5,undefined,2,undefined]
+-- 3
+
+data CoolBool = CoolBool { getCoolBool :: Bool }
+helloMe :: CoolBool -> String
+helloMe (CoolBool _) = "hello"
+
+-- *Main Control.Applicative> helloMe (CoolBool True)
+-- "hello"
+-- *Main Control.Applicative> helloMe undefined
+-- "*** Exception: Prelude.undefined
+
+newtype CoolBool' = CoolBool' { getCoolBool' :: Bool }
+helloMe' :: CoolBool' -> String
+helloMe' (CoolBool' _) = "hello"
+
+-- *Main Control.Applicative> helloMe' undefined
+-- "hello"
+
+--- type vs. newtype vs. data
 
 -- to be continued
