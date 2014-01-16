@@ -63,5 +63,53 @@ import Data.Monoid
 -- True
 
 --- The Ordering Monoid
+-- *Main> 1 `compare` 2
+-- LT
+-- *Main> 2 `compare` 2
+-- EQ
+-- *Main> 3 `compare` 2
+-- GT
 
+-- *Main> LT `mappend` GT
+-- LT
+-- *Main> GT `mappend` LT
+-- GT
+-- *Main> mempty `mappend` LT
+-- LT
+-- *Main> mempty `mappend` GT
+-- GT
+
+lengthCompare :: String -> String -> Ordering
+lengthCompare x y = let a = length x `compare` length y
+                        b = x `compare` y
+                    in if a == EQ then b else a
+
+-- *Main> lengthCompare "zen" "ants"
+-- LT
+-- *Main> lengthCompare "zen" "ant"
+-- GT
+
+lengthCompare' :: String -> String -> Ordering
+lengthCompare' x y = (length x `compare` length y) `mappend` (x `compare` y)
+
+-- *Main> lengthCompare' "zen" "ants"
+-- LT
+-- *Main> lengthCompare' "zen" "ant"
+-- GT
+
+lengthCompare'' :: String -> String -> Ordering
+lengthCompare'' x y = (length x `compare` length y) `mappend`
+                      (vowels x `compare` vowels y) `mappend`
+                      (x `compare` y)
+                      where vowels = length . filter (`elem` "aeiou")
+
+-- *Main> lengthCompare'' "zen" "anna"
+-- LT
+-- *Main> lengthCompare'' "zen" "ana"
+-- LT
+-- *Main> lengthCompare'' "zen" "ann"
+-- GT
+
+--- Maybe the Monoid
+                      
 -- to be continue
