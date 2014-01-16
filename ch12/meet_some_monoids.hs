@@ -42,5 +42,26 @@ import Data.Monoid
 
 --- Any and All
 
+-- *Main Control.Applicative> getAny $ Any True `mappend` Any False
+-- True
+-- *Main Control.Applicative> getAny $ mempty `mappend` Any True
+-- True
+-- *Main Control.Applicative> getAny . mconcat . map Any $ [False, False, False, True]
+-- True
+-- *Main Control.Applicative> getAny $ mempty `mappend` mempty
+-- False
+
+-- *Main> getAll $ mempty `mappend` All True
+-- True
+-- *Main> getAll $ mempty `mappend` All False
+-- False
+-- *Main> getAll . mconcat . map All $ [True,True,True]
+-- True
+-- *Main> getAll . mconcat . map All $ [True,True,False]
+-- False
+-- *Main> getAll $ mempty `mappend` (mempty :: All)
+-- True
+
+--- The Ordering Monoid
 
 -- to be continue
