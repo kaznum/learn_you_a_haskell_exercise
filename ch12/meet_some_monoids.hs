@@ -111,5 +111,27 @@ lengthCompare'' x y = (length x `compare` length y) `mappend`
 -- GT
 
 --- Maybe the Monoid
-                      
--- to be continue
+
+-- *Main> Nothing `mappend` Just "andy"
+-- Just "andy"
+-- *Main> Just LT `mappend` Nothing
+-- Just LT
+-- *Main> Just (Sum 3) `mappend` Just (Sum 4)
+-- Just (Sum {getSum = 7})
+-- *Main>                       
+
+-- *Main> getFirst $ First (Just 'a') `mappend` First (Just 'b')
+-- Just 'a'
+-- *Main> getFirst $ First Nothing `mappend` First (Just 'b')
+-- Just 'b'
+-- *Main> getFirst $ First (Just 'a') `mappend` First Nothing
+-- Just 'a'
+
+-- *Main> getFirst . mconcat . map First $ [Nothing, Just 9, Just 10]
+-- Just 9
+
+-- *Main> getLast . mconcat . map Last $ [Nothing, Just 9, Just 10]
+-- Just 10
+-- *Main> getLast $ Last (Just "one") `mappend` Last (Just "two")
+-- Just "two"
+
