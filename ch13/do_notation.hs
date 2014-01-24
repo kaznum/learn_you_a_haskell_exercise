@@ -24,5 +24,12 @@ foo' = do
   return (show x ++ y)
 
 --- Do As I Do
+-- *Main> Just 9 >>= (\x -> Just (x > 8))
+-- Just True
+
+marySue :: Maybe Bool
+marySue = do
+  x <- Just 9
+  Just (x > 8)
 
 -- to be continued
