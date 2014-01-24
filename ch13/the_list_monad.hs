@@ -14,5 +14,18 @@
 -- *Main Control.Applicative> [1,2,3] >>= \x -> []
 -- []
 
+-- *Main Control.Applicative> [1,2] >>= \n -> ['a','b'] >>= \ch -> return (n, ch)
+-- [(1,'a'),(1,'b'),(2,'a'),(2,'b')]
+
+listOfTuples :: [(Int, Char)]
+listOfTuples = do
+  n <- [1,2]
+  ch <- ['a', 'b']
+  return (n, ch)
+
+-- *Main Control.Applicative> listOfTuples
+-- [(1,'a'),(1,'b'),(2,'a'),(2,'b')]
+
+--- do Notation and List Comprehensions
 
 -- to be continued
