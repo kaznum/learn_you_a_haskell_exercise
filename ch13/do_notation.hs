@@ -82,5 +82,12 @@ routine'' = do
   landLeft 1 second
 
 --- Pattern Matching and Failure
+justH :: Maybe Char
+justH = do
+  (x:xs) <- Just "hello"
+  return x
 
--- to be continued
+wopwop :: Maybe Char
+wopwop = do
+  (x:xs) <- Just ""
+  return x
