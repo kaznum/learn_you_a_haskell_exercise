@@ -27,5 +27,9 @@ listOfTuples = do
 -- [(1,'a'),(1,'b'),(2,'a'),(2,'b')]
 
 --- do Notation and List Comprehensions
+-- *Main> [(n, ch) | n <- [1,2], ch <- ['a', 'b']]
+-- [(1,'a'),(1,'b'),(2,'a'),(2,'b')]
+
+--- MonadPlus and the guard Function
 
 -- to be continued
