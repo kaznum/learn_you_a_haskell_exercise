@@ -11,6 +11,16 @@
 -- ["WoW","WoW","WoW"]
 
 --- Right Identity
+-- *Main Control.Applicative> Just "move on up" >>= (\x -> return x)
+-- Just "move on up"
+-- *Main Control.Applicative> [1,2,3,4] >>= (\x -> return x)
+-- [1,2,3,4]
+-- *Main Control.Applicative> putStrLn "Wah!" >>= (\x -> return x)
+-- Wah!
+-- *Main Control.Applicative> :t putStrLn
+-- putStrLn :: String -> IO ()
+
+--- Associativity
 
 
 -- to be continued
