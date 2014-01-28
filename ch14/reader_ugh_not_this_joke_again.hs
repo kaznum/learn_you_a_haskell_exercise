@@ -16,4 +16,6 @@ import Control.Applicative
 
 --- Functions As Monads
 
+--- The Reader Monad
+
 -- to be continued
