@@ -186,5 +186,24 @@ gcd''' a b
 -- 110 mod 34 = 8
 
 --- Comparing Performance
-    
--- to be continued
+finalCountDown :: Int -> Writer (DiffList String) ()
+finalCountDown 0 = do
+  tell (toDiffList ["0"])
+finalCountDown x = do
+  finalCountDown (x-1)
+  tell (toDiffList [show x])
+
+finalCountDown' :: Int -> Writer [String] ()
+finalCountDown' 0 = do
+  tell ["0"]
+finalCountDown' x = do
+  finalCountDown' (x-1)
+  tell [show x]
+
+-- mapM_ putStrLn . fromDiffList . snd . runWriter $ finalCountDown 500000
+-- mapM_ putStrLn . snd . runWriter $ finalCountDown' 500000
+
+-- *Main> length . fromDiffList . snd . runWriter $ finalCountDown 5000
+-- 5001
+-- *Main> length . snd . runWriter $ finalCountDown' 5000
+-- 5001
