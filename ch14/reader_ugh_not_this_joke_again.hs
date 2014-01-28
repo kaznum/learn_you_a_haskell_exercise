@@ -1,4 +1,5 @@
 import Control.Applicative
+import Control.Monad.Instances
 
 -- *Main> let f = (*5)
 -- *Main> let g = (+3)
@@ -17,5 +18,21 @@ import Control.Applicative
 --- Functions As Monads
 
 --- The Reader Monad
+addStuff :: Int -> Int
+addStuff = do
+  a <- (*2)
+  b <- (+10)
+  return (a+b)
 
--- to be continued
+-- *Main> addStuff 3
+-- 19
+
+addStuff' :: Int -> Int
+addStuff' x = let
+  a = (*2) x
+  b = (+10) x
+  in a+b
+
+-- *Main> addStuff' 3
+-- 19
+
