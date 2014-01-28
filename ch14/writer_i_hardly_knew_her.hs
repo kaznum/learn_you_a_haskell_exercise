@@ -1,5 +1,6 @@
 import Data.Monoid
 import qualified Data.ByteString.Lazy as B
+import Control.Monad.Writer
 
 isBigGang :: Int -> Bool
 isBigGang x = x > 9
@@ -67,6 +68,16 @@ addDrink _ = ("beer", Sum 30)
 
 
 --- The Writer Type
+
+-- *Main> runWriter (return 3 :: Writer String Int)
+-- (3,"")
+-- *Main> runWriter (return 3 :: Writer (Sum Int) Int)
+-- (3,Sum {getSum = 0})
+-- *Main> runWriter (return 3 :: Writer (Product Int) Int)
+-- (3,Product {getProduct = 1})
+
+
+--- Using do Notation with Writer
 
 
 -- to be continued
