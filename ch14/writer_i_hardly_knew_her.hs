@@ -78,6 +78,34 @@ addDrink _ = ("beer", Sum 30)
 
 
 --- Using do Notation with Writer
+logNumber :: Int -> Writer [String] Int
+logNumber x = writer (x, ["Got number: " ++ show x])
 
+multWithLog :: Writer [String] Int
+multWithLog = do
+  a <- logNumber 3
+  b <- logNumber 5
+  return (a*b)
+---- during the processes, context ([String]) is kept so [string]s are appended
+---- in each process.
+
+-- *Main> runWriter multWithLog
+-- (15,["Got number: 3","Got number: 5"])
+
+-- *Main> :t tell
+-- tell :: MonadWriter w m => w -> m ()
+
+multWithLog' :: Writer [String] Int
+multWithLog' = do
+  a <- logNumber 3
+  b <- logNumber 5
+  tell ["Gonna multiply these two"]
+  return (a*b)
+
+-- *Main> runWriter multWithLog'
+-- (15,["Got number: 3","Got number: 5","Gonna multiply these two"])
+
+
+--- Adding Logging to Programs
 
 -- to be continued
