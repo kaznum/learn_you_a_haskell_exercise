@@ -81,5 +81,43 @@ moreStack = do
 -- ((),[8,3,2,1,0])
 
 --- Getting and Setting State
+stackyStack :: State Stack ()
+stackyStack = do
+  stackNow <- get
+  if stackNow == [1,2,3]
+    then put [8,3,1]
+    else put [9,2,1]
+
+-- *Main> runState stackyStack [1,2,3,4,5]
+-- ((),[9,2,1])
+-- *Main> runState stackyStack [1,2,3]
+-- ((),[8,3,1])
+
+pop'' :: State Stack Int
+pop'' = do
+  (x:xs) <- get
+  put xs
+  return x
+
+push'' :: Int -> State Stack ()
+push'' x = do
+  xs <- get
+  put (x:xs)
+
+sampleManip :: State Stack ()
+sampleManip = do
+  a <- pop''
+  if a == 5
+    then push'' 5
+    else do
+      push'' 3
+      push'' 8
+
+-- *Main> runState  sampleManip [1,2,3]
+-- ((),[8,3,2,3])
+-- *Main> runState  sampleManip [5,2,3]
+-- ((),[5,2,3])
+
+--- Randomness and the State Monad
 
 -- to be continued
