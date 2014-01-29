@@ -1,6 +1,7 @@
 import Control.Monad
 import Control.Monad.Writer
 import Control.Monad.State
+import Control.Applicative
 
 -- liftM and Friends
 -- *Main> liftM (*3) (Just 8)
