@@ -119,5 +119,15 @@ sampleManip = do
 -- ((),[5,2,3])
 
 --- Randomness and the State Monad
+randomSt :: (RandomGen g, Random a) => State g a
+randomSt = state random
 
--- to be continued
+threeCoins' :: State StdGen (Bool, Bool, Bool)
+threeCoins' = do
+  a <- randomSt
+  b <- randomSt
+  c <- randomSt
+  return (a, b, c)
+
+-- *Main> runState threeCoins' (mkStdGen 33)
+-- ((True,False,True),680029187 2103410263)
