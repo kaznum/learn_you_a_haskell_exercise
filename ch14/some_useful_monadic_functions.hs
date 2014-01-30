@@ -98,5 +98,39 @@ joinedMaybes = do
 -- Just 10
 
 --- filterM
+-- *Main> :t filter
+-- filter :: (a -> Bool) -> [a] -> [a]
+-- *Main> :t filterM
+-- filterM :: Monad m => (a -> m Bool) -> [a] -> m [a]
+
+-- *Main> filter (\x -> x < 4) [9,1,5,2,10,3]
+-- [1,2,3]
+
+keepSmall :: Int -> Writer [String] Bool
+keepSmall x
+  | x < 4 = do
+    tell ["Keeping " ++ show x]
+    return True
+  | otherwise = do
+    tell [show x ++ " is too large, throwing it away"]
+    return False
+
+-- *Main> fst $ runWriter $ filterM keepSmall [9,1,5,2,10,3]
+-- [1,2,3]
+-- *Main> mapM_ putStrLn $ snd $ runWriter $ filterM keepSmall [9,1,5,2,10,3]
+-- 9 is too large, throwing it away
+-- Keeping 1
+-- 5 is too large, throwing it away
+-- Keeping 2
+-- 10 is too large, throwing it away
+-- Keeping 3
+
+powerset :: [a] -> [[a]]
+powerset xs = filterM (\x -> [True, False]) xs
+
+-- *Main> powerset [1,2,3]
+-- [[1,2,3],[1,2],[1,3],[1],[2,3],[2],[3],[]]
+
+--- foldM
 
 -- to be continued
