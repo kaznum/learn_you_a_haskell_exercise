@@ -62,5 +62,41 @@ push a = state $ \xs -> ((), a:xs)
 
 
 --- The join Function
+-- *Main> join (Just (Just 9))
+-- Just 9
+-- *Main> join (Just Nothing)
+-- Nothing
+-- *Main> join (Just (Just (Just 5)))
+-- Just (Just 5)
+-- *Main> join [[1,2,3],[4,5,6]]
+-- [1,2,3,4,5,6]
+
+-- *Main> runWriter $ join (writer (writer (1, "aaa"), "bbb"))
+-- (1,"bbbaaa")
+
+-- *Main> join (Right (Right 9)) :: Either String Int
+-- Right 9
+-- *Main> join (Right (Left "error")) :: Either String Int
+-- Left "error"
+-- *Main> join (Left "error") :: Either String Int
+-- Left "error"
+
+-- *Main> runState (join (state $ \s -> (push 10, 1:2:s))) [0,0,0]
+-- ((),[10,1,2,0,0,0])
+
+joinedMaybes :: Maybe Int
+joinedMaybes = do
+  m <- Just (Just 8)
+  m
+
+-- *Main> joinedMaybes
+-- Just 8
+
+-- *Main> fmap  (\x -> Just (x + 1)) (Just 9)
+-- Just (Just 10)
+-- *Main> join $ fmap  (\x -> Just (x + 1)) (Just 9)
+-- Just 10
+
+--- filterM
 
 -- to be continued
