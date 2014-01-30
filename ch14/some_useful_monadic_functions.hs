@@ -132,5 +132,20 @@ powerset xs = filterM (\x -> [True, False]) xs
 -- [[1,2,3],[1,2],[1,3],[1],[2,3],[2],[3],[]]
 
 --- foldM
+-- *Main> :t foldl
+-- foldl :: (a -> b -> a) -> a -> [b] -> a
+-- *Main> :t foldM
+-- foldM :: Monad m => (a -> b -> m a) -> a -> [b] -> m a
 
--- to be continued
+-- *Main> foldl (\acc x -> acc + x) 0 [2,8,3,1]
+-- 14
+
+binSmalls :: Int -> Int -> Maybe Int
+binSmalls acc x
+  | x > 9 = Nothing
+  | otherwise = Just (acc + x)
+
+-- *Main> foldM binSmalls 0 [2,8,3,1]
+-- Just 14
+-- *Main> foldM binSmalls 0 [2,11,3,1]
+-- Nothing
