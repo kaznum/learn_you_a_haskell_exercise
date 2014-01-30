@@ -28,4 +28,39 @@ push a = state $ \xs -> ((), a:xs)
 -- *Main> :t fmap
 -- fmap :: Functor f => (a -> b) -> f a -> f b
 
+-- *Main> (+) <$> Just 3 <*> Just 5
+-- Just 8
+-- *Main> (+) <$> Just 3 <*> Nothing
+-- Nothing
+
+-- *Main> Just (+3) <*> Just 4
+-- Just 7
+-- *Main> Just (+3) `ap` Just 4
+-- Just 7
+-- *Main> [(+1),(+2),(+3)] <*> [10,11]
+-- [11,12,12,13,13,14]
+-- *Main> [(+1),(+2),(+3)] `ap` [10,11]
+-- [11,12,12,13,13,14]
+
+-- *Main> :t liftA2
+-- liftA2 :: Applicative f => (a -> b -> c) -> f a -> f b -> f c
+
+-- *Main> :t liftM2
+-- liftM2 :: Monad m => (a1 -> a2 -> r) -> m a1 -> m a2 -> m r
+-- *Main> :t liftM3
+-- liftM3
+--   :: Monad m => (a1 -> a2 -> a3 -> r) -> m a1 -> m a2 -> m a3 -> m r
+-- *Main> :t liftM4
+-- liftM4
+--   :: Monad m =>
+--      (a1 -> a2 -> a3 -> a4 -> r) -> m a1 -> m a2 -> m a3 -> m a4 -> m r
+-- *Main> :t liftM5
+-- liftM5
+--   :: Monad m =>
+--      (a1 -> a2 -> a3 -> a4 -> a5 -> r)
+--      -> m a1 -> m a2 -> m a3 -> m a4 -> m a5 -> m r
+
+
+--- The join Function
+
 -- to be continued
