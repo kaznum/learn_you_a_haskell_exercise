@@ -118,5 +118,10 @@ attach t (_, bs) = (t, bs)
 
 --- Going Straight to the Top, Whre the Air Is Fresh and Clean!
 
+topMost :: Zipper a -> Zipper a
+topMost (t, []) = (t, [])
+topMost z = topMost (goUp z)
 
--- to be continued
+
+-- *Main> (freeTree, []) -: goLeft' -: goLeft' -: goLeft' -: goLeft' -: attach (Node 'Z' Empty Empty) -: topMost
+-- (Node 'P' (Node 'O' (Node 'L' (Node 'N' (Node 'Z' Empty Empty) Empty) (Node 'T' Empty Empty)) (Node 'Y' (Node 'S' Empty Empty) (Node 'A' Empty Empty))) (Node 'L' (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty)) (Node 'A' (Node 'A' Empty Empty) (Node 'C' Empty Empty))),[])
