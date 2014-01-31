@@ -51,7 +51,22 @@ elemAt [] (Node x _ _) = x
 -- 'P'
 
 --- A Trail of Breadcrumbs
+type Breadcrumbs = [Direction]
+goLeft :: (Tree a, Breadcrumbs) -> (Tree a, Breadcrumbs)
+goLeft (Node _ l _, bs) = (l, L:bs)
 
+goRight :: (Tree a, Breadcrumbs) -> (Tree a, Breadcrumbs)
+goRight (Node _ _ r, bs) = (r, R:bs)
+
+-- *Main> goLeft (goRight (freeTree, []))
+-- (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty),[L,R])
+
+x -: f = f x
+
+-- *Main> (freeTree, []) -: goRight -: goLeft
+-- (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty),[L,R])
+
+--- Going Back Up
 
 
 -- to be continued
