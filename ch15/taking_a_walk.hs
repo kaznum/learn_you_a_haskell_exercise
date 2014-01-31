@@ -51,6 +51,7 @@ elemAt [] (Node x _ _) = x
 -- 'P'
 
 --- A Trail of Breadcrumbs
+
 type Breadcrumbs = [Direction]
 goLeft :: (Tree a, Breadcrumbs) -> (Tree a, Breadcrumbs)
 goLeft (Node _ l _, bs) = (l, L:bs)
@@ -65,6 +66,7 @@ x -: f = f x
 
 -- *Main> (freeTree, []) -: goRight -: goLeft
 -- (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty),[L,R])
+
 
 --- Going Back Up
 
@@ -81,8 +83,40 @@ goUp :: (Tree a, Breadcrumbs' a) -> (Tree a, Breadcrumbs' a)
 goUp (t, LeftCrumb x r:bs) = (Node x t r, bs)
 goUp (t, RightCrumb x l:bs) = (Node x l t, bs)
 
-type Zipper a = (Tree a, Breadcrumbs a)
+type Zipper a = (Tree a, Breadcrumbs' a)
+
 
 --- Manipulating Trees Under Focus
+
+modify :: (a -> a) -> Zipper a -> Zipper a
+modify f (Node x l r, bs) = (Node (f x) l r, bs)
+modify f (Empty, bs) = (Empty, bs)
+
+-- *Main> newFocus
+-- (Node 'P' (Node 'S' Empty Empty) (Node 'A' Empty Empty),[RightCrumb 'O' (Node 'L' (Node 'N' Empty Empty) (Node 'T' Empty Empty)),LeftCrumb 'P' (Node 'L' (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty)) (Node 'A' (Node 'A' Empty Empty) (Node 'C' Empty Empty)))])
+
+-- *Main> let newFocus = (freeTree, []) -: goLeft' -: goRight' -: modify (\_ -> 'P')
+-- *Main> newFocus
+-- (Node 'P' (Node 'S' Empty Empty) (Node 'A' Empty Empty),[RightCrumb 'O' (Node 'L' (Node 'N' Empty Empty) (Node 'T' Empty Empty)),LeftCrumb 'P' (Node 'L' (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty)) (Node 'A' (Node 'A' Empty Empty) (Node 'C' Empty Empty)))])
+
+-- *Main> let newFocus2 = modify (\_ -> 'X') (goUp newFocus)
+-- *Main> newFocus2
+-- (Node 'X' (Node 'L' (Node 'N' Empty Empty) (Node 'T' Empty Empty)) (Node 'P' (Node 'S' Empty Empty) (Node 'A' Empty Empty)),[LeftCrumb 'P' (Node 'L' (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty)) (Node 'A' (Node 'A' Empty Empty) (Node 'C' Empty Empty)))])
+
+-- *Main> let newFocus2 = newFocus -: goUp -: modify (\_ -> 'X')
+-- *Main> newFocus2
+-- (Node 'X' (Node 'L' (Node 'N' Empty Empty) (Node 'T' Empty Empty)) (Node 'P' (Node 'S' Empty Empty) (Node 'A' Empty Empty)),[LeftCrumb 'P' (Node 'L' (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty)) (Node 'A' (Node 'A' Empty Empty) (Node 'C' Empty Empty)))])
+
+attach :: Tree a -> Zipper a -> Zipper a
+attach t (_, bs) = (t, bs)
+
+-- *Main> let farLeft = (freeTree, []) -: goLeft' -: goLeft' -: goLeft' -: goLeft'
+-- *Main> let newFocus = farLeft -: attach (Node 'Z' Empty Empty)
+-- *Main> newFocus
+-- (Node 'Z' Empty Empty,[LeftCrumb 'N' Empty,LeftCrumb 'L' (Node 'T' Empty Empty),LeftCrumb 'O' (Node 'Y' (Node 'S' Empty Empty) (Node 'A' Empty Empty)),LeftCrumb 'P' (Node 'L' (Node 'W' (Node 'C' Empty Empty) (Node 'R' Empty Empty)) (Node 'A' (Node 'A' Empty Empty) (Node 'C' Empty Empty)))])
+
+
+--- Going Straight to the Top, Whre the Air Is Fresh and Clean!
+
 
 -- to be continued
